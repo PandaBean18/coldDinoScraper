@@ -9,10 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@sparticuz/chromium": "^133.0.0",
     "@types/puppeteer-core": "^7.0.4",
-    "chrome-aws-lambda": "^10.1.0",
     "chromium": "^3.0.3",
     "next": "15.3.0",
+    "puppeteer-core": "^24.6.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
