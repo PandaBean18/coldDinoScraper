@@ -11,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     })
 
     const page = await browser.newPage();
-    page.goto("https://www.plunge.one", {
+    await page.goto("https://www.plunge.one", {
         waitUntil: "networkidle2"
     });
 
