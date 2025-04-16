@@ -1,22 +1,15 @@
 import Chromium from "chrome-aws-lambda";
 import { NextApiRequest, NextApiResponse } from "next";
-import puppeteer from "puppeteer";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const isDev = !process.env.AWS_LAMBDA_FUNCTION_VERSION;
 
-    let browser;
-
-    if (isDev) {
-        browser = await puppeteer.launch({headless: true})
-    } else {
-        browser = await Chromium.puppeteer.launch({
+    let browser = await Chromium.puppeteer.launch({
             args: Chromium.args,
             defaultViewport: Chromium.defaultViewport,
             executablePath: await Chromium.executablePath,
             headless: Chromium.headless
         })
-    }
 
     const page = await browser.newPage();
     await page.goto("https://www.plunge.one", {
