@@ -10,6 +10,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             res.status(403).json({message: "Unauthorized"});
             return;
         }
+
+        const url = req.body["url"];
+
         const browser = await puppeteer.launch({
             args: chrome.args,
             defaultViewport: chrome.defaultViewport,
@@ -18,7 +21,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         })
 
         const page = await browser.newPage();
-        await page.goto("https://www.plunge.one", {
+        await page.goto(url, {
             waitUntil: "networkidle2"
         });
 
