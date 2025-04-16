@@ -4,12 +4,6 @@ import puppeteer from "puppeteer-core"
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === "POST") {
-
-        if (req.query.ping === "true") {
-            res.status(200).json({message: "pong!"});
-            return;
-        }
-
         const k = req.body["api_key"];
 
         if (k !== process.env.API_KEY) {
@@ -35,6 +29,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         res.status(200).json({html: content});
 
     } else {
+        if (req.query.ping === "true") {
+            res.status(200).json({message: "pong!"});
+            return;
+        }
         res.status(405).json({message: "method not allowed"})
     }
 }
