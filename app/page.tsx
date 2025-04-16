@@ -1,3 +1,10 @@
+import { useEffect } from "react";
+
 export default function Home() {
-  window.location.href = "https://cold-dino.vercel.app";  
+
+  useEffect(()=>{
+    window.onload = () => {
+      window.location.href = "https://cold-dino.vercel.app";  
+    }
+  }, [])
 }
